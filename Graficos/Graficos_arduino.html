@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando Gráficos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="display: flex;">
+    <div>
+        <canvas id="sensores" style="width: 40vw; height: 40vh; position: relative;"></canvas>
+      </div>
+      <div>
+        <canvas id="temp_umid" style="width: 40vw; height: 40vh; position: relative;"></canvas>
+      </div>
+</body>
+</html>
+<script>
+    const sensores = document.getElementById('sensores');
+    const temp_umid = document.getElementById('temp_umid');
+  
+    new Chart(sensores, {
+      
+      data: {
+        labels: ['DHT11_01', 'DHT11_02', 'DHT11_03', 'DHT11_04'],
+        datasets: [{
+            type: 'bar',
+        label: 'Umidade Média',
+          data: [90, 89, 93, 87],
+          borderWidth: 1,
+          yAxisID: 'Umidade'
+        },
+        {
+            type: 'bar',
+          label: 'Temperatura Média',
+          data: [22, 24, 27, 23],
+          borderWidth: 1,   
+          yAxisID: 'Temperatura'
+        }
+        ]
+      },
+      options: {
+        scales: {
+          Umidade: {
+            type: 'linear',
+            position: 'left',
+            gird:  {
+                drawOnChartArea: false
+            },
+            ticks: {
+                callback: function(value, index, values) {
+                    return `${value}.0%`;
+                }
+            }
+          },
+          Temperatura: {
+            beginAtZero: true,
+            type: 'linear',
+            position: 'right',
+            gird:  {
+                drawOnChartArea: false
+            },
+            ticks: {
+                callback: function(value, index, values) {
+                    return `${value} °C`;
+                }
+            }
+          }
+        }
+      }
+      
+    });
+
+
+    new Chart(temp_umid, {
+      data: {
+        labels: ['12:01', '12:02', '12:03', '12:04', '12:05', '12:06'],
+        datasets: [{
+        type: 'bar',
+        label: 'Umidade',
+        data: [80, 82, 80, 85, 80, 83],
+        borderWidth: 1,
+        yAxisID: 'Umidade'
+        
+        },
+        {
+        type: 'line',
+        label: 'Temperatura',
+        data: [-5, -4, -5, -2, 0, 4],
+        borderWidth: 1,
+        yAxisID: 'Temperatura'
+        }
+        ]
+      },
+      options: {
+        scales: {
+          Umidade: {
+            min: '60',
+            max: '100',
+            type: 'linear',
+            position: 'left',
+            gird:  {
+                drawOnChartArea: false
+            },
+            ticks: {
+                callback: function(value, index, values) {
+                    return `${value}.0%`;
+                }
+            }
+          },
+          Temperatura: {
+            min: '-10',
+            max: '10',
+            type: 'linear',
+            position: 'right',
+            gird:  {
+                drawOnChartArea: false
+            },
+            ticks: {
+                callback: function(value, index, values) {
+                    return `${value} °C`;
+                }
+            }
+          }
+        }
+    }
+});
+  </script>
+   

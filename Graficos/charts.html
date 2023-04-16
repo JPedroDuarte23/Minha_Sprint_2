@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criando Gráficos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div>
+        <canvas id="canvas_grafico_linha"></canvas>
+      </div>
+      <div>
+        <canvas id="canvas_grafico_barra"></canvas>
+      </div>
+</body>
+</html>
+<script>
+    const linha_g = document.getElementById('canvas_grafico_linha');
+  
+    new Chart(linha_g, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [{
+          label: 'Temperatura',
+          data: [30, 29, 28, 25, 22, 23],
+          borderWidth: 1
+        },
+        {
+          label: 'Umidade',
+          data: [80, 82, 80, 85, 80, 83],
+          borderWidth: 1
+        }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    const barra_g = document.getElementById('canvas_grafico_barra');
+  
+    new Chart(barra_g, {
+      type: 'bar',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+        datasets: [{
+        label: 'Umidade Média',
+          data: [90, 89, 93, 87, 88, 82],
+          borderWidth: 1
+        },
+        {
+          
+          label: 'Temperatura Média',
+          data: [22, 24, 27, 23, 20, 18],
+          borderWidth: 1
+        }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+   
